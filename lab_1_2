@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a, b, plot, m;
+    cout << "Введите длину пластины: ";
+    cin >> a;
+    cout << "Введите ширину пластины: ";
+    cin >> b;
+    cout << "Введите плотность пластины: ";
+    cin >> plot;
+    m = a * b * plot;
+    cout << ("Масса пластины = ", m);
+}
