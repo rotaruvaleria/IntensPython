@@ -1,0 +1,10 @@
+from math import*
+print("Введите внутренний радиус")
+R1 = int(input())
+print("Введите внешний радиус")
+R2 = int(input())
+S = pi*(R22 - R12)
+if R1 >= R2:
+    print("Error")
+else:
+    print("Площадь кольца = ", S)
