@@ -1,7 +1,5 @@
 print("Введите начальный год эры")
 god =int(input())
-if god != 65 and god != 248 and god != 534 and god != 2500 and god != 3500 and god != 4500:
-    print("Ошибка, не правильный начальный год")
 match god:
     case 4500:
         print("Катархтей")
@@ -15,3 +13,5 @@ match god:
         print("Мезозой")
     case 65:
         print("Кайнозой")
+    case _:
+        print("Ошибка, нет такого начального года эры")
