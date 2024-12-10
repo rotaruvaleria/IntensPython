@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main() 
+{
+    int n;
+    long long result = 1;
+    cout << "Введите число n: ";
+    cin >> n;
+    for (int i = 1; i <= n; i++) 
+    {
+        result *= i * i * i;
+    }
+    cout << "Произведение кубов: " << result << endl;
+    return 0;
+}
