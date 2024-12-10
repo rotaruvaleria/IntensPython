@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main() 
+{
+    int k, n, result = 1;
+    printf("Введите число k: ");
+    scanf("%d", &k);
+    printf("Введите показатель степени n: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) 
+    {
+        result *= k;
+    }
+    printf("Результат: %d\n", result);
+    return 0;
+}
