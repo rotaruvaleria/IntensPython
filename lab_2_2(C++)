@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main() 
+{
+    int a, b, c, d;
+    cout << "Введите четыре целых числа: ";
+    cin >> a >> b >> c >> d;
+    if (a == d && b == c) {
+        cout << "Числа образуют палиндром\n";
+    } else {
+        cout << "Числа не образуют палиндром\n";
+    }
+
+    return 0;
+}
