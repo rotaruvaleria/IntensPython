@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+int main() 
+{
+    int k, n, a = 1;
+    cout << "Введите число k: ";
+    cin >> k;
+    cout << "Введите натуральное n: ";
+    cin >> n;
+    for (int i = 1; i < n; i++) 
+    {
+        a = k * a + 1;
+    }
+    cout << "Результат: " << a << endl;
+    return 0;
+}
