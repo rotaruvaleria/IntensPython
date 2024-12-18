@@ -1,0 +1,16 @@
+#include <stdio.h>
+int otresok(int a, int b, int c) {
+    return (b <= a && a <= c) || (c <= a && a <= b);
+}
+int main() 
+{
+    int a, b, c;
+    printf("Введите число a: ");
+    scanf("%d", &a);
+    printf("Введите конечное b: ");
+    scanf("%d", &b);
+    printf("Введите конечное c: ");
+    scanf("%d", &c);
+    printf("%d\n", otresok(a, b, c));  // 1 = Входит, 0 = Не входит 
+    return 0;
+}
