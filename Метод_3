@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double ef(float x) {
+    return x * x * x - 0.2 * x * x + 0.5 * x - 1.0;
+}
+
+double chomet(double (*f)(double), double a, double b, double eps, int max_iter) {
+    int iteration = 0;
+    if (f(a) * f(b) >= 0) {
+        cout << "Метод не применим: f(a) и f(b) должны иметь разные знаки." << endl;
+        return NAN; // специальное значение, проверяется функцией isnan()
+    }
+
+    double x = a - (b - a) * f(a) / (f(b) - f(a)); 
+
+    for (int i = 0; i < max_iter; ++i) {
+        if (abs(f(x)) < eps) {
+            break; //  функция близится к нулю
+        }
+
+        if (f(a) * f(x) < 0) {
+            b = x; // Корень между a и x
+        } else {
+            a = x; // Корень между x и b
+        }
+
+        x = a - (b - a) * f(a) / (f(b) - f(a));
+        iteration++;
+    }
+
+    cout << "Количество итераций: " << iteration << endl;
+    return x;
+}
+
+int main() {
+    double a = 0.0; // Левый край
+    double b = 3.0; // Правый край
+    double epsilon = 1e-6;
+    int max_iter = 1000; 
+
+    double root = chomet(ef, a, b, epsilon, max_iter);
+
+    if (!isnan(root)) {
+        cout << "Корень уравнения: " << root << endl;
+        double fun = ef(root);
+        cout << "Значение функции: f(" << root << ") = " << fun << endl;
+    }
+
+    return 0;
+}
+
+
+// для точного значения можно float заменить на double
