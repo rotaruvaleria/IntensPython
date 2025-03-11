@@ -1,0 +1,43 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+float ef(float x) {
+    return pow(x, 3) - 0.2 * x * x + 0.5 * x - 1.0;
+}
+
+float deref(float x) {
+    return 3.0 * pow(x, 2) - 0.4 * x + 0.5;
+}
+
+// Метод Ньютона
+void newton(float (*f)(float), float (*df)(float), float x0, float epsilon, int max_iter) {
+    float x = x0;
+    for (int i = 0; i < max_iter; ++i) {
+        float f_x = f(x);
+        float f_derivative = df(x);
+        float x_new = x - f_x / f_derivative;
+
+        if (abs(x_new - x) < epsilon) {
+            cout << "Корень уравнения: " << x_new << endl;
+            cout << "Количество итераций: " << i + 1 << endl;
+            cout << "Значение функции: f(" << x_new << ") = " << f(x_new) << endl;
+            return;
+        }
+
+        x = x_new;
+    }
+
+    cout << "Метод не подходит за " << max_iter << " итераций." << endl;
+}
+
+int main() {
+    float x0 = 1.0f;
+    float epsilon = 1e-6f;
+    int max_iter = 100;
+
+    newton(ef, deref, x0, epsilon, max_iter);
+
+    return 0;
+}
