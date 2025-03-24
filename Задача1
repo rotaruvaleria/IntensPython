@@ -1,43 +1,62 @@
+
+Питон
+
+#метод деления пополам
+import math
+
+def f(t, v, a):
+    return a - (math.asin((9.8 * t) / (2 * v)) * 180 / math.pi) #преобразование радианы в градусы
+def bs(t, v):
+    left = 0
+    right = 10000
+    while (right - left) > epsilon: #сужение интервала
+        mid = (right + left) / 2 #середина
+        if f(t, v, mid) * f(t, v, left) < 0:
+            right = mid
+        else:
+            left = mid
+    return (left + right) / 2 #среднее значение последнего интервала
+
+epsilon = 1e-10
+t = 1
+v = 10
+root = bs(t, v)
+print("Root:", root)
+
+C++
+
 #include <iostream>
 #include <cmath>
-
 using namespace std;
-
-float ef(float x) {
-    return pow(x, 3) - 0.2 * x * x + 0.5 * x - 1.0;
+const double eps = 1e-10;
+double f(double t, double v, double a)
+{ 
+    return a - (asin((9.8*t) / (2*v)))*180 / 3.14;
 }
-
-float deref(float x) {
-    return 3.0 * pow(x, 2) - 0.4 * x + 0.5;
-}
-
-// Метод Ньютона
-void newton(float (*f)(float), float (*df)(float), float x0, float epsilon, int max_iter) {
-    float x = x0;
-    for (int i = 0; i < max_iter; ++i) {
-        float f_x = f(x);
-        float f_derivative = df(x);
-        float x_new = x - f_x / f_derivative;
-
-        if (abs(x_new - x) < epsilon) {
-            cout << "Корень уравнения: " << x_new << endl;
-            cout << "Количество итераций: " << i + 1 << endl;
-            cout << "Значение функции: f(" << x_new << ") = " << f(x_new) << endl;
-            return;
+double bs(double t, double v)
+{
+    double left = 0;
+    double right = 10000;
+    double mid;
+    while((right-left)>eps)
+    {
+        mid = (right+left) / 2;
+        if(f(t,v,mid) * f(t,v,left) < 0)
+        {
+            right = mid;
         }
-
-        x = x_new;
+        else left = mid;
     }
-
-    cout << "Метод не подходит за " << max_iter << " итераций." << endl;
+    return (left + right ) / 2;
 }
 
-int main() {
-    float x0 = 1.0f;
-    float epsilon = 1e-6f;
-    int max_iter = 100;
 
-    newton(ef, deref, x0, epsilon, max_iter);
-
+int main ()
+{
+    double t=1;
+    double v=10;
+    double root = bs(t,v);
+    cout << "Root " << root << endl;
     return 0;
+
 }
