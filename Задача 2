@@ -1,0 +1,67 @@
+Питон
+
+#метод деления пополам
+from math import *
+def f(b, v, a):
+    b_rad = radians(b)
+    return a - (v**2 * sin(2 * b_rad)) / g
+
+def bs(b, v):
+    left = 0
+    right = 10000
+    while right - left > eps: #сужение интервала
+        mid = (right + left) / 2.0 #середина
+        if f(b, v, mid) * f(b, v, left) < 0:
+            right = mid
+        else:
+            left = mid
+    return (left + right) / 2   #среднее значение последнего интервала
+
+eps = 1e-10
+g = 9.8
+
+print("Root:", bs(45, 10))
+
+
+С++
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+const double eps = 1e-10;
+
+double f(double b, double v, double a)
+{
+    return a - ((pow(v, 2)*sin(2*b))/9.8);
+}
+double bs(double b, double v)
+{
+    double left = 0;
+    double right = 10000;
+    double mid;
+    while ((right - left) > eps)
+    {
+        mid = (right + left) / 2;
+        if (f(b, v, mid) * f(b, v, left) < 0)
+        {
+            right = mid;
+        }
+        else left = mid;
+    }
+    return (left + right) / 2;
+}
+
+
+int main()
+{
+    double b = 45;
+    double v = 10;
+    double root = bs(b, v);
+    cout << "Root " << root << endl;
+    return 0;
+
+}
+
+
