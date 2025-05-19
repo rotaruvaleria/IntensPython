@@ -1,0 +1,43 @@
+#include <iostream>
+#include <math.h>
+#include <cmath>
+
+using namespace std;
+
+double trapecia_rule(double (*func)(double), double a, double b, int nseg) {
+    double dx = 1.0 * (b - a) / nseg;
+    double sum = 0.5 * (func(a) + func(b));
+
+    for (int i = 0; i < nseg; i++) {
+        sum += func(a + i*dx);
+    }
+    
+    return (sum * dx); 
+}
+
+double func(double x) {
+    double a = 1;
+    double b = 1;
+    return (1/(x*x-4+x+3));
+    cout << "Используем метод трапеции" << endl;
+}
+
+int main() {
+    double a, b, eps;
+    int nseg = 1; 
+    a = 0;
+    b = 2;
+    eps = 1e-7;
+    cout << "a = " << a << " , b =  " << b << " , eps = " << eps;
+    double int_1, int_2;
+    int_1 = trapecia_rule(func, a, b, nseg);
+    
+    do{
+        nseg = 2 * nseg;
+        int_1 = int_2; 
+        int_2 = trapecia_rule(func, a, b, nseg);
+    }while (fabs(int_1 - int_2) > eps);
+    
+    cout << "   Ответ: I = " << int_2 << endl;
+    cout << "Количество разбиений: " << nseg << endl;
+}  
