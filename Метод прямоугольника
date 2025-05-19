@@ -1,0 +1,40 @@
+Метод прямоугольника
+
+#include <iostream>
+#include <math.h>
+#include <cmath>
+
+using namespace std;
+
+double rectangle_integral(double (*function)(double), double a, double b, int n) {
+    double x, h;
+    double sum = 0.0;
+    h = (b - a) / n;  
+
+    for (int i = 0; i < n; i++) {
+        x = a + i * h;
+        sum += function(a+i*h);
+    }
+    return (sum * h); 
+}
+
+double function(double x) {
+    return (10 - x);
+}
+
+int main() {
+    double a, b, eps;
+    double s1, s;
+    int n = 1; 
+    double x = 11;
+    a = 0;
+    b = 10;
+    eps = 1e-6;
+    s1 = rectangle_integral(function, a, b, n); 
+    do {
+        s = s1;    
+        n = 2 * n;  
+        s1 = rectangle_integral(function, a, b, n);
+    } while (fabs(s1 - s) > eps); 
+    cout << "Integral=" << s1 << endl;
+}
