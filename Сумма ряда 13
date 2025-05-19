@@ -1,0 +1,27 @@
+#include <iostream>
+#include <math.h>
+#include <cmath>
+
+using namespace std;
+
+int main() 
+{
+	int n_max = 10;
+	double sum = 0.0;
+	for (int i = 3; i < n_max + 1; i++)
+	{
+		sum = (1.0 / ( i * i - 4));
+	}
+	cout << "Summa: " << sum;
+	return 0;
+}
+
+import math
+
+n_max = 10
+sum = 0
+q = 1
+for n in range(3, n_max + 1):
+    q =  (1.0 / ( n**2 - 4))
+    sum += q
+print('Сумма ряда ', sum)
