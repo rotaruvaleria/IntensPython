@@ -1,0 +1,35 @@
+#include <iostream>
+#include <math.h>
+#include <cmath>
+
+using namespace std;
+
+double simpson_integral(double (*function)(double), double a, double b, int n) {
+    double h = (b - a) / n;  
+    double k1 = 0, k2 = 0;
+    for (int i = 1; i < n; i += 2) {
+        k1 += function(a + i * h);
+        k2 += function(a + (i + 1) * h);
+    }      
+    return h / 3 * (function(a) + 4 * k1 + 2 * k2);
+}
+
+double function(double x) {
+    return (10 - x);
+}
+
+int main() {
+    double a, b, eps;
+    double s1, s;
+    int n = 1; 
+    a = 0;
+    b = 10;
+    eps = 1e-6;
+    s1 = simpson_integral(function, a, b, n); 
+    do {
+        s = s1;    
+        n = 2 * n;  
+        s1 = simpson_integral(function, a, b, n);
+    } while (fabs(s1 - s) > eps); 
+    cout << "Integral=" << s1 << endl;
+}
