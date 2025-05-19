@@ -1,0 +1,33 @@
+#Сумма числового ряда
+Питон
+n_max = int(input('Введите натуральное число: '))
+sum = 0
+q = 1
+for n in range(1, n_max + 1):
+    q = float(((-1) ** n) / (2 ** n))
+    sum += q
+print('Сумма ряда ', sum)
+
+С++
+
+#include <iostream>
+#include <math.h>
+#include <cmath>
+
+using namespace std;
+
+int main() 
+{
+	int n_max =0;
+	cout << "Введите n_max: ";
+	cin >> n_max;
+	double sum = 0;
+	double q = 1;
+	for (int i = 1; i < n_max + 1; i++)
+	{
+		q = pow(-1, i) / (pow(2, i));
+		sum += q;
+	}
+	cout << "Summa: " << sum;
+	return 0;
+}
